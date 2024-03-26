@@ -1,0 +1,25 @@
+version : '3.8'
+services:
+  mysql:
+    image: mysql:8.0.32
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: imdb
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./imdb.sql:/docker-entrypoint-initdb.d/1.sql"
+  
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: movies
+    volumes:
+      - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
