@@ -7,19 +7,20 @@ import es.urjc.entity.Movie;
 import es.urjc.repository.MovieRepository;
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.quarkus.panache.common.Page;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import org.bson.types.ObjectId;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static jakarta.ws.rs.core.Response.Status.NOT_FOUND;
 import static java.util.Objects.isNull;
 
 @Path("/movies")
 public class MovieResource {
+
     private static final int DEFAULT_PAGE_NUMBER = 0;
     private static final int PAGE_SIZE = 20;
 
@@ -31,14 +32,12 @@ public class MovieResource {
 
     @GET
     @Path("/{movieId}")
-    public Uni<Response> getMovieById(@PathParam("movieId") Long movieId) {
-        return movieRepository
-                .findById(movieId)
+    public Uni<Response> getMovieById(@PathParam("movieId") String movieId) {
+        return movieRepository.findById(new ObjectId(movieId))
                 .onItem()
                 .ifNull()
                 .failWith(NotFoundException::new)
-                .onItem()
-                .castTo(Movie.class)
+                .onItem().castTo(Movie.class)
                 .map(this::convertToResponse)
                 .map(Response::ok)
                 .onFailure(NotFoundException.class)
@@ -47,10 +46,10 @@ public class MovieResource {
     }
 
     @GET
-    public Uni<List<MovieResponse>> getAllMoviesByPage(@QueryParam("page") Optional<Integer> pageNumber) {
+    public Multi<MovieResponse> getAllMoviesByPage(@QueryParam("page") Optional<Integer> pageNumber) {
         Page page = Page.of(pageNumber.orElse(DEFAULT_PAGE_NUMBER), PAGE_SIZE);
         return movieRepository.findByPage(page)
-                .map(movies -> movies.stream().map(this::convertToResponse).collect(Collectors.toList()));
+                .map(this::convertToResponse);
     }
 
 
@@ -58,30 +57,32 @@ public class MovieResource {
     public Uni<MovieResponse> saveMovie(MovieRequest movieRequest) {
         return Uni.createFrom()
                 .item(convertToEntity(movieRequest))
-                .call(movieRepository::persistAndFlush)
+                .call(movieRepository::persist)
                 .map(this::convertToResponse);
     }
 
     @PATCH
     @Path("/{movieId}/rating")
     @WithTransaction
-    public Uni<Response> updateRating(@PathParam("movieId") Long movieId, RatingRequest ratingRequest) {
+    public Uni<Response> updateRating(@PathParam("movieId") String movieId, RatingRequest ratingRequest) {
         return movieRepository.update("rating = ?1 where id = ?2", ratingRequest.getValue(), movieId)
-                .replaceWith(getMovieById(movieId));
+                .all().replaceWith(getMovieById(movieId));
     }
 
 
     @PUT
     @Path("/{movieId}")
     @WithTransaction
-    public Uni<Response> updateMovie(@PathParam("movieId") Long movieId, MovieRequest movieRequest) {
-        return movieRepository.findById(movieId)
+    public Uni<Response> updateMovie(@PathParam("movieId") String movieId, MovieRequest movieRequest) {
+        return movieRepository.findById(new ObjectId(movieId))
                 .onItem()
                 .ifNull()
                 .failWith(NotFoundException::new)
                 .onItem().castTo(Movie.class)
-                .invoke(movie -> updateData(movie, movieRequest)).call(movieRepository::persistAndFlush)
-                .map(this::convertToResponse).map(Response::ok)
+                .invoke(movie -> updateData(movie, movieRequest))
+                .call(movieRepository::persist)
+                .map(this::convertToResponse)
+                .map(Response::ok)
                 .onFailure(NotFoundException.class)
                 .recoverWithItem(Response.status(NOT_FOUND))
                 .map(Response.ResponseBuilder::build);
@@ -91,15 +92,15 @@ public class MovieResource {
     @DELETE
     @Path("/{movieId}")
     @WithTransaction
-    public Uni<Response> deleteMovie(@PathParam("movieId") Long movieId) {
-        return movieRepository.deleteById(movieId)
+    public Uni<Response> deleteMovie(@PathParam("movieId") String movieId) {
+        return movieRepository.deleteById(new ObjectId(movieId))
                 .map(isDeleted -> isDeleted ? Response.noContent() : Response.status(NOT_FOUND))
                 .map(Response.ResponseBuilder::build);
     }
 
     private MovieResponse convertToResponse(Movie movie) {
         return MovieResponse.builder()
-                .id(movie.getId())
+                .id(movie.getId().toString())
                 .poster(movie.getPoster())
                 .title(movie.getTitle())
                 .releasedYear(movie.getReleasedYear())
