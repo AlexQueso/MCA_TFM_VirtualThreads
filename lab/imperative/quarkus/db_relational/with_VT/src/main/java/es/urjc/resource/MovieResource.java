@@ -21,7 +21,6 @@ import static java.util.Objects.isNull;
 
 @Path("/movies")
 @RunOnVirtualThread
-@Blocking
 public class MovieResource {
 
     private static final int DEFAULT_PAGE_NUMBER = 0;
