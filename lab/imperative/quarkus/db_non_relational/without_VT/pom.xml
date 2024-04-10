@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.urjc</groupId>
-    <artifactId>repository-pattern</artifactId>
+    <artifactId>imperative_Quarkus_Mongo_NoVT</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>imperative_Quarkus_Mongo_NoVT</name>
     <description>imperative - Quarkus - MongoDB - without VT</description>
@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.8.2</quarkus.platform.version>
+        <quarkus.platform.version>3.9.2</quarkus.platform.version>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     </properties>
     <dependencyManagement>
@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jackson</artifactId>
+            <artifactId>quarkus-rest-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
