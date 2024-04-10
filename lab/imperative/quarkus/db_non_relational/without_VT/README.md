@@ -1,6 +1,6 @@
 # Quarkus API Rest and Hibernate ORM with Panache's Repository Pattern
 
-This application is built using the [Quarkus Framework](https://quarkus.io/), that exposes an API Rest, which uses [RESTEasy](https://resteasy.dev/) implementation of the JAX-RS specification, that is connected to MySQL database using the Panache's _Repository Pattern_.
+This application is built using the [Quarkus Framework](https://quarkus.io/), that exposes an API Rest, which uses [RESTEasy](https://resteasy.dev/) implementation of the JAX-RS specification, that is connected to MongoDb database using the Panache's _Repository Pattern_.
 
 ## Set Up ⚙
 
@@ -8,8 +8,9 @@ You must have installed on your machine:
 * JDK 21 version
 * Apache Maven 3.9.6
 * Docker
+* Quarkus 3.9.2
 
-If you already have it installed, you need to [configure](https://github.com/MasterCloudApps-Projects/QuarkusMutiny_vs_ReactorSpring/tree/main/setup#configuring-the-mysql-database-) the MySQL database.
+If you already have it installed, you need to [configure](https://github.com/AlexQueso/MCA_TFM_VirtualThreads/tree/main/setup) the MongoDb database.
 
 ## Start Up 🛠
 
