@@ -8,6 +8,7 @@ You must have installed on your machine:
 * JDK 21 version
 * Apache Maven 3.9.6
 * Docker
+* Quarkus 3.9.2
 
 If you already have it installed, you need to [configure](https://github.com/MasterCloudApps-Projects/QuarkusMutiny_vs_ReactorSpring/tree/main/setup#configuring-the-mysql-database-) the MySQL database.
 
