@@ -11,8 +11,8 @@
     <groupId>es.urjc</groupId>
     <artifactId>spring-data</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-data</name>
-    <description>spring-data</description>
+    <name>reactive_SB_Mysql_NoVT</name>
+    <description>reactive - Spring Boot - Mysql - Without VT</description>
     <properties>
         <java.version>21</java.version>
     </properties>

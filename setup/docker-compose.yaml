@@ -8,9 +8,9 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_USER: user
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
-      - "./imdb.sql:/docker-entrypoint-initdb.d/1.sql"
+      - ./imdb.sql:/docker-entrypoint-initdb.d/1.sql
   
   mongo:
     image: mongo:4.4-bionic

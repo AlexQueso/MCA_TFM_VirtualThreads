@@ -11,8 +11,8 @@
     <groupId>es.urjc</groupId>
     <artifactId>spring-data</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-data</name>
-    <description>spring-data</description>
+    <name>imperative_SB_Mysql_NoVT</name>
+    <description>imperative - Spring Boot - Mysql - without VT</description>
     <properties>
         <java.version>21</java.version>
         <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
@@ -33,6 +33,7 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

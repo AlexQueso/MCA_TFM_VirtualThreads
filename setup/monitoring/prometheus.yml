@@ -1,0 +1,89 @@
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'imperative_SB_Mysql_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+
+  - job_name: 'reactive_SB_Mysql_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8081'] 
+
+  - job_name: 'imperative_Quarkus_Mysql_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8084']
+
+  - job_name: 'reactive_Quarkus_Mysql_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8085'] 
+
+  - job_name: 'imperative_SB_Mysql_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8090']
+
+  - job_name: 'reactive_SB_Mysql_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8091'] 
+
+  - job_name: 'imperative_Quarkus_Mysql_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8094']
+
+  - job_name: 'imperative_SB_Mongo_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8082']
+
+  - job_name: 'reactive_SB_Mongo_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8083'] 
+
+  - job_name: 'imperative_Quarkus_Mongo_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8086']
+
+  - job_name: 'reactive_Quarkus_Mongo_NoVT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8087'] 
+
+  - job_name: 'imperative_SB_Mongo_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8092']
+
+  - job_name: 'reactive_SB_Mongo_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8093'] 
+
+  - job_name: 'imperative_Quarkus_Mongo_VT'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8096']
