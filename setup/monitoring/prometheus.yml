@@ -17,13 +17,13 @@ scrape_configs:
       - targets: ['host.docker.internal:8081'] 
 
   - job_name: 'imperative_Quarkus_Mysql_NoVT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8084']
 
   - job_name: 'reactive_Quarkus_Mysql_NoVT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8085'] 
@@ -41,7 +41,7 @@ scrape_configs:
       - targets: ['host.docker.internal:8091'] 
 
   - job_name: 'imperative_Quarkus_Mysql_VT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8094']
@@ -59,7 +59,7 @@ scrape_configs:
       - targets: ['host.docker.internal:8083'] 
 
   - job_name: 'imperative_Quarkus_Mongo_NoVT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8086']

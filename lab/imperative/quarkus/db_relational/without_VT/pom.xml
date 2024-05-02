@@ -4,8 +4,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.urjc</groupId>
-    <artifactId>imperative_Quarkus_Mysql_NoVT</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>app</artifactId>
+    <version>0.0.1</version>
     <name>imperative_Quarkus_Mysql_NoVT</name>
     <description>Imperative - Quarkus - Mysql - Without VT</description>
     <properties>
@@ -58,6 +58,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-jib</artifactId>
         </dependency>
     </dependencies>
     <build>

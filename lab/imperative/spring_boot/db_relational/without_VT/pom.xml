@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.urjc</groupId>
-    <artifactId>spring-data</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>app</artifactId>
+    <version>0.0.1</version>
     <name>imperative_SB_Mysql_NoVT</name>
     <description>imperative - Spring Boot - Mysql - without VT</description>
     <properties>

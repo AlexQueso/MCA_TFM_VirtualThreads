@@ -1,0 +1,1 @@
+artillery run -t http://localhost:8080 load-testing.yml -o 8080_imperative-sb-mysql-novt.json
