@@ -53,8 +53,7 @@ public class MovieController {
     @PostMapping
     public Mono<MovieResponse> saveMovie(@RequestBody MovieRequest movieRequest) {
 
-        return Mono.just(convertToEntity(movieRequest))
-                .flatMap(movieRepository::save)
+        return movieRepository.save(convertToEntity(movieRequest))
                 .map(this::convertToResponse);
     }
 

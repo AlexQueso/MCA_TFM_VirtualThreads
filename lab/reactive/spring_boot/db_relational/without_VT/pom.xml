@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.urjc</groupId>
-    <artifactId>spring-data</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>app</artifactId>
+    <version>0.0.1</version>
     <name>reactive_SB_Mysql_NoVT</name>
     <description>reactive - Spring Boot - Mysql - Without VT</description>
     <properties>
@@ -34,9 +34,9 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
         <dependency>
-            <groupId>dev.miku</groupId>
+            <groupId>io.asyncer</groupId>
             <artifactId>r2dbc-mysql</artifactId>
-            <version>0.8.2.RELEASE</version>
+            <version>0.9.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>

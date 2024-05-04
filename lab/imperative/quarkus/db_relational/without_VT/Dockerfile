@@ -9,6 +9,6 @@ RUN mvn -B package -DskipTests
 #Step 2: Dockerización
 FROM eclipse-temurin:21-jdk
 WORKDIR /usr/src/app/
-COPY --from=builder /app/target/quarkus-app/*.jar /usr/src/app/
+COPY --from=builder /app/target/quarkus-app/quarkus-run.jar /usr/src/app/
 EXPOSE 8084
 CMD [ "java", "-jar", "quarkus-run.jar" ]

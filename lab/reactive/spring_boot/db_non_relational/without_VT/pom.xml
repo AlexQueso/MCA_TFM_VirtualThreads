@@ -10,8 +10,8 @@
     </parent>
 
     <groupId>es.urjc</groupId>
-    <artifactId>spring-data</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>app</artifactId>
+    <version>0.0.1</version>
     <name>reactive_SB_Mongo_NoVT</name>
     <description>reactive - Spring Boot - MongoDB - without VT</description>
 
