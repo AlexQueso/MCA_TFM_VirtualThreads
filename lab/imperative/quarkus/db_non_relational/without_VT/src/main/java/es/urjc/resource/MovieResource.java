@@ -6,7 +6,6 @@ import es.urjc.dto.RatingRequest;
 import es.urjc.entity.Movie;
 import es.urjc.repository.MovieRepository;
 import io.quarkus.panache.common.Page;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import org.bson.types.ObjectId;
@@ -49,7 +48,6 @@ public class MovieResource {
     }
 
     @POST
-    @Transactional
     public MovieResponse saveMovie(MovieRequest movieRequest) {
 
         Movie movie = convertToEntity(movieRequest);
@@ -60,7 +58,6 @@ public class MovieResource {
 
     @PATCH
     @Path("/{movieId}/rating")
-    @Transactional
     public Response updateRating(@PathParam("movieId") String movieId, RatingRequest ratingRequest) {
         movieRepository.update("rating = ?1 where id = ?2", ratingRequest.getValue(), movieId);
         return getMovieById(movieId);
@@ -68,7 +65,6 @@ public class MovieResource {
 
     @PUT
     @Path("/{movieId}")
-    @Transactional
     public Response updateMovie(@PathParam("movieId") String movieId, MovieRequest movieRequest) {
         return movieRepository.findByIdOptional(movieId)
                 .map(movie -> {
@@ -83,7 +79,6 @@ public class MovieResource {
 
     @DELETE
     @Path("/{movieId}")
-    @Transactional
     public Response deleteMovie(@PathParam("movieId") String movieId) {
         boolean isDeleted = movieRepository.deleteById(new ObjectId(movieId));
         Response.ResponseBuilder responseBuilder = isDeleted ? Response.noContent() : Response.status(NOT_FOUND);
