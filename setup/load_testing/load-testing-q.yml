@@ -35,12 +35,12 @@ scenarios:
     weight: 35
     flow:
     - get:
-        url: "/movies/66363e769a6159df629d23c9"
+        url: "/movies/66374ad9036a10cad986fe64"
   - name: Get movies by id 2
     weight: 35
     flow:
     - get:
-        url: "/movies/66363e769a6159df629d23ca"
+        url: "/movies/66374ad9036a10cad986fe59"
   - name: Get movies by page
     weight: 20
     flow:
