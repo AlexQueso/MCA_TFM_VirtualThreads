@@ -17,17 +17,6 @@ services:
   #     timeout: 20s
   #     retries: 3
 
-  # mongo:
-  #   image: mongo:latest
-  #   container_name: mongo
-  #   restart: always
-  #   volumes:
-  #     - ./rs-initiate.js:/docker-entrypoint-initdb.d/rs-initiate.js
-  #     - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-  #   ports:
-  #     - 27017:27017
-  #   command: ["--replSet", "dbrs", "--bind_ip_all"]
-  
   mongo:
     image: mongo:4.4-bionic
     restart: always
@@ -36,10 +25,10 @@ services:
     volumes:
       - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
-  app-8086:
-    image: alexquesada/imperative-quarkus-mongo-novt:0.0.2
+  app-8087:
+    image: alexquesada/reactive-quarkus-mongo-novt:0.0.2
     ports:
-      - "8086:8086"
+      - "8087:8087"
     restart: always
     environment:
       QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
@@ -115,3 +104,14 @@ services:
   #   depends_on:
   #     mysql:
   #       condition: service_healthy
+
+  # app-8086:
+  # image: alexquesada/imperative-quarkus-mongo-novt:0.0.2
+  # ports:
+  #   - "8086:8086"
+  # restart: always
+  # environment:
+  #   QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
+  #   JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
+  # depends_on:
+  #   - mongo

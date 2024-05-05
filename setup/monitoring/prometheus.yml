@@ -65,7 +65,7 @@ scrape_configs:
       - targets: ['host.docker.internal:8086']
 
   - job_name: 'reactive_Quarkus_Mongo_NoVT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8087'] 
@@ -83,7 +83,7 @@ scrape_configs:
       - targets: ['host.docker.internal:8093'] 
 
   - job_name: 'imperative_Quarkus_Mongo_VT'
-    metrics_path: '/actuator/prometheus'
+    metrics_path: '/q/metrics'
     scrape_interval: 3s
     static_configs:
       - targets: ['host.docker.internal:8096']
