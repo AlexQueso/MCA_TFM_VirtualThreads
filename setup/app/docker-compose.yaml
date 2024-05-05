@@ -24,17 +24,16 @@ services:
     volumes:
       - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
-  app-8094:
-    image: alexquesada/imperative-quarkus-mysql-vt:0.0.1
+  app-8096:
+    image: alexquesada/imperative-quarkus-mongo-vt:0.0.1
     ports:
-      - "8094:8094"
+      - "8096:8096"
     restart: always
     environment:
-      SPRING_APPLICATION_JSON: '{ "quarkus.datasource.jdbc.url" : "jdbc:mysql://mysql:3306/imdb" }'
+      QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
       JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
     depends_on:
-      mysql:
-        condition: service_healthy
+      - mongo
 
   # app-8080:
   #   image: alexquesada/imperative-sb-mysql-novt:0.0.3
@@ -175,3 +174,15 @@ services:
   #     JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
   #   depends_on:
   #     - mongo
+
+  # app-8094:
+  #   image: alexquesada/imperative-quarkus-mysql-vt:0.0.1
+  #   ports:
+  #     - "8094:8094"
+  #   restart: always
+  #   environment:
+  #     SPRING_APPLICATION_JSON: '{ "quarkus.datasource.jdbc.url" : "jdbc:mysql://mysql:3306/imdb" }'
+  #     JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy  
