@@ -1,0 +1,1 @@
+readme to present the app variations
