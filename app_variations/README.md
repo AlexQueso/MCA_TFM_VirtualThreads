@@ -2,7 +2,7 @@
 
 This section contains the source code of the different versions of the Java web application used for the performance comparisons. 
 
-### What does the application do?
+## What does the application do?
 The web application is a movie management system that exposes an API allowing the following operations:
 
 - Retrieve a movie by its ID.
@@ -14,7 +14,7 @@ The web application is a movie management system that exposes an API allowing th
 
 The application communicates with a database where the movies are stored. 
 
-### Explanation of the different versions
+## Explanation of the different versions
 
 The goal was to test the performance of 16 versions of the same web application by using four binary variables, which are:
 - Spring Boot or Quarkus framework.

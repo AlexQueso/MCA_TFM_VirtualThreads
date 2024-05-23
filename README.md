@@ -8,7 +8,7 @@ The main goal of this project is to analyze the performance impact of using virt
 - Relational and non-relational databases
 
 
-### Main sections of the repository
+## Main sections of the repository
 - [app_variations](/app_variations/) : This section contians the different versions of the web application projects.
 - [setup](/setup/) : The steps and technologies used to replicate the environment for the application testing can be found under this section.
 - [results](/results) : 
