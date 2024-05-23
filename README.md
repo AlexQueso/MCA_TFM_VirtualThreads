@@ -1,4 +1,4 @@
-# Analysis and Comparison of the Performance of Web Applications Running on Virtual Threads
+# Analysis and Comparison of the Performance of Java Web Applications Running on Virtual Threads
 
 The main goal of this project is to analyze the performance impact of using virtual threads in the execution of Java web applications. Specifically, it aims to test the performance differences of using virtual threads in various versions of the same web application with a database access. Fourteen different versions of the application will be compared using the following four variables:
 
