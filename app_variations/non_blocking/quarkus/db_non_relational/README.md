@@ -1,10 +1,6 @@
-# Quarkus Mutiny API Rest and Hibernate ORM with Panache Reactive
+# Quarkus - Non blocking programming approach - MongoDB - Without Virtual Threads
 
-This project is built using the [Quarkus Framework](https://quarkus.io/) and [Mutiny](https://smallrye.io/smallrye-mutiny/).
-
-The application exposes a Reactive API Rest, which uses [RESTEasy](https://resteasy.dev/) implementation of the JAX-RS specification and Mutiny library for automatice transform Reactive API, that is connected to MySQL database using *Panache* (using the reactive implementation), a library similar to Spring Data JPA, simplifying the most common database operations.
-
-Mention Panache has two difference implementations, the repository pattern and the active record pattern, in this example we use the repository pattern, this means that all database operations are contented in repository layer, it's so common to see this in Spring Data JPA.
+This application is built using the [Quarkus Framework v3.9.2](https://quarkus.io/), that exposes an API Rest that is connected to [MongoDB](https://www.mongodb.com/) database using the Panache's _Repository Pattern_.
 
 ## Set Up ⚙
 
@@ -13,7 +9,7 @@ You must have installed on your machine:
 * Apache Maven 3.9.6
 * Docker
 
-If you already have it installed, you need to [configure](https://github.com/MasterCloudApps-Projects/QuarkusMutiny_vs_ReactorSpring/tree/main/setup#configuring-the-mysql-database-) the MySQL database.
+If you already have it installed, you need to [configure](../../../../../setup/) the MongoDB database.
 
 ## Start Up 🛠
 
@@ -21,7 +17,7 @@ There are two option:
 
 1. Development
 
-   You can run your application in dev mode:
+    You can run your application in dev mode:
 
     ```bash
     ./mvnw clean compile quarkus:dev
@@ -29,19 +25,21 @@ There are two option:
 
 2. Production
 
-   First, the application must be packaged using:
+    First, the application must be packaged using:
 
     ```bash
     ./mvnw package
     ```
 
-   It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory. Now, the only thing left to do is to
-   run the application:
+    It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory. Now, the only thing left to do is to run the application:
 
     ```bash
     java -jar target/quarkus-app/quarkus-run.jar
     ```
 
-## Testing 🔍
+## Virtual Threads
 
-The application has an OpenAPI dependency, providing a Swagger interface to make requests against to the API, click [here](http://localhost:8080/swagger-ui/) to test it.
+In order to activate or deactivate the usage of virtual threads during execution of the application, the following annotation must be added to the resource:
+``` java
+@RunOnVirtualThread
+```

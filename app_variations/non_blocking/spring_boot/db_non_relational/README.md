@@ -1,10 +1,7 @@
-# Spring MVC and Spring Data JPA
+# Spring Boot - Non blocking programming approach - MongoDB
 
-This application is built using the [Spring Boot](https://spring.io/projects/spring-boot), that exposes an API Rest,
-which uses [Spring MVC](https://docs.spring.io/spring-framework/docs/5.3.15/reference/html/web.html#mvc), that is
-connected to MySQL database using the [Spring Data JPA](https://spring.io/projects/spring-data) dependecy.
-
-[//]: # (todo update readmi)
+This application is built using the [Spring Boot v3.2.3](https://spring.io/projects/spring-boot), that exposes an API Rest, that is
+connected to [MongoDB](https://www.mongodb.com/) database.
 
 ## Set Up ⚙
 
@@ -14,9 +11,7 @@ You must have installed on your machine:
 * Apache Maven 3.9.6
 * Docker
 
-[//]: # (todo change to mongo config when done)
-
-If you already have it installed, you need to [configure](https://github.com/MasterCloudApps-Projects/QuarkusMutiny_vs_ReactorSpring/tree/main/setup#configuring-the-mysql-database-) the MySQL database.
+If you already have it installed, you need to [configure](../../../../../setup/) the MongoDB database.
 
 ## Start Up 🛠
 
@@ -26,7 +21,9 @@ You can run the application as follows:
 ./mvnw spring-boot:run
 ```
 
-## Testing 🔍
+## Virtual Threads
 
-The application has an OpenAPI dependency, providing a Swagger interface to make requests against to the API,
-click [here](http://localhost:8080/api/swagger-ui/index.html) to test it.
+In order to activate or deactivate the usage of virtual threads during execution of the application, the following property must be set to `true` or `false`:
+```
+spring.threads.virtual.enabled=true
+```

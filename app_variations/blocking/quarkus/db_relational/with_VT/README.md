@@ -1,6 +1,6 @@
-# Quarkus API Rest and Hibernate ORM with Panache's Repository Pattern
+# Quarkus - Blocking programming approach - Mysql - With Virtual Threads
 
-This application is built using the [Quarkus Framework](https://quarkus.io/), that exposes an API Rest, which uses [RESTEasy](https://resteasy.dev/) implementation of the JAX-RS specification, that is connected to MySQL database using the Panache's _Repository Pattern_.
+This application is built using the [Quarkus Framework v3.9.2](https://quarkus.io/), that exposes an API Rest, that is connected to [Mysql](https://www.mysql.com/) database using the Panache's _Repository Pattern_.
 
 ## Set Up ⚙
 
@@ -9,7 +9,7 @@ You must have installed on your machine:
 * Apache Maven 3.9.6
 * Docker
 
-If you already have it installed, you need to [configure](https://github.com/MasterCloudApps-Projects/QuarkusMutiny_vs_ReactorSpring/tree/main/setup#configuring-the-mysql-database-) the MySQL database.
+If you already have it installed, you need to [configure](../../../../../setup/) the MySQL database.
 
 ## Start Up 🛠
 
@@ -37,6 +37,9 @@ There are two option:
     java -jar target/quarkus-app/quarkus-run.jar
     ```
 
-## Testing 🔍
+## Virtual Threads
 
-The application has an OpenAPI dependency, providing a Swagger interface to make requests against to the API, click [here](http://localhost:8080/swagger-ui/) to test it.
+In order to activate or deactivate the usage of virtual threads during execution of the application, the following annotation must be added to the resource:
+``` java
+@RunOnVirtualThread
+```
