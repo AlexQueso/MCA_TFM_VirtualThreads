@@ -38,6 +38,15 @@ To accurately measure the web applications' performance, four API endpoints were
 
 The load test involved progressively making calls to the application over four minutes. The load testing definition can be found [here](../setup/load_testing/load-testing.yml)
 
+The test execution follows these steps:
+- 30 seconds at 200 user/second
+- 30 seconds ramp up to 300 users
+- 30 seconds at 300 user/second
+- 30 seconds ramp up to 400 users
+- 30 seconds at 400 user/second
+- 30 seconds ramp up to 500 users
+- 60 seconds at 500 user/second
+
 ## Results
 
 The table links to the each of the comparisons where the performance of each application version is analyzed. The goal is to understand the potential benefits of running applications on virtual threads. Therefore, the analysis compares the results of equivalent versions with and without the use of virtual threads during execution.
