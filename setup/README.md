@@ -47,7 +47,7 @@ Dockerization is achieved by using a multistage Dockerfile located in the root d
 
 #### Quarkus dockerization
 
-To dockerized the Quarkus' projects, [Google JIB](https://es.quarkus.io/guides/container-image#jib) was used. To get a Quarkus' project docker image, the following command has to be executed form the root directory:
+To dockerized the Quarkus projects, [Google JIB](https://es.quarkus.io/guides/container-image#jib) was used. To get a Quarkus project image, the following command has to be executed form the root directory:
 ```bash
 ./mvnw install -Dquarkus.container-image.build=true
 ```
