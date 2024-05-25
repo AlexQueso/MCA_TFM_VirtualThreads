@@ -1,6 +1,6 @@
 # Load Testing
 
-To achieve an objective comparison among the [fourteen versions](../app_variations/README.md) of the web application, the same load test was executed on all versions in a similar execution environment.
+To achieve an objective comparison among the [fourteen versions](../app_variations/) of the web application, the same load test was executed on all versions in a similar execution environment.
 
 ## Tools Used for Load Testing
 
