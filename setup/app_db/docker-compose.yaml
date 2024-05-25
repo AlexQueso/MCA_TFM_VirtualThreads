@@ -1,50 +1,39 @@
 services:
-  # mysql:
-  #   image: mysql:8.0.32
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: password
-  #     MYSQL_DATABASE: imdb
-  #     MYSQL_PASSWORD: password
-  #     MYSQL_USER: user
-  #   ports:
-  #     - 3306:3306
-  #   volumes:
-  #     - ./imdb.sql:/docker-entrypoint-initdb.d/1.sql
-  #   healthcheck:
-  #     test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_PASSWORD
-  #     interval: 10s
-  #     timeout: 20s
-  #     retries: 3
-
-  mongo:
-    image: mongo:4.4-bionic
-    restart: always
+  mysql:
+    image: mysql:8.0.32
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: imdb
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
     ports:
-      - 27017:27017
+      - 3306:3306
     volumes:
-      - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./imdb.sql:/docker-entrypoint-initdb.d/1.sql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_PASSWORD
+      interval: 10s
+      timeout: 20s
+      retries: 3
 
-  app-8096:
-    image: alexquesada/imperative-quarkus-mongo-vt:0.0.1
+  # mongo:
+  #   image: mongo:4.4-bionic
+  #   restart: always
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./imdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  app-8080:
+    image: alexquesada/imperative-sb-mysql-novt:0.0.3
     ports:
-      - "8096:8096"
+      - "8080:8080"
     restart: always
     environment:
-      QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
+      SPRING_APPLICATION_JSON: '{ "spring.datasource.url" : "jdbc:mysql://mysql:3306/imdb" }'
       JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
     depends_on:
-      - mongo
-
-  # app-8080:
-  #   image: alexquesada/imperative-sb-mysql-novt:0.0.3
-  #   ports:
-  #     - "8080:8080"
-  #   restart: always
-  #   environment:
-  #     SPRING_APPLICATION_JSON: '{ "spring.datasource.url" : "jdbc:mysql://mysql:3306/imdb" }'
-  #     JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
-  #   depends_on:
-  #     - mysql
+      - mysql
 
   # app-8081:
   #   image: alexquesada/reactive-sb-mysql-novt:0.0.5
@@ -105,15 +94,15 @@ services:
   #       condition: service_healthy
 
   # app-8086:
-  # image: alexquesada/imperative-quarkus-mongo-novt:0.0.2
-  # ports:
-  #   - "8086:8086"
-  # restart: always
-  # environment:
-  #   QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
-  #   JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
-  # depends_on:
-  #   - mongo
+  #   image: alexquesada/imperative-quarkus-mongo-novt:0.0.2
+  #   ports:
+  #     - "8086:8086"
+  #   restart: always
+  #   environment:
+  #     QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
+  #     JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
+  #   depends_on:
+  #     - mongo
 
   # app-8087:
   #   image: alexquesada/reactive-quarkus-mongo-novt:0.0.2
@@ -186,3 +175,14 @@ services:
   #   depends_on:
   #     mysql:
   #       condition: service_healthy  
+
+  # app-8096:
+  #   image: alexquesada/imperative-quarkus-mongo-vt:0.0.1
+  #   ports:
+  #     - "8096:8096"
+  #   restart: always
+  #   environment:
+  #     QUARKUS_MONGODB_CONNECTION_STRING: 'mongodb://mongo:27017'
+  #     JAVA_TOOL_OPTIONS: '-Xms500M -Xmx500M'
+  #   depends_on:
+  #     - mongo
