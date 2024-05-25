@@ -24,11 +24,21 @@ The goal was to test the performance of 16 versions of the same web application 
 
 Quarkus doesn't allow (as for today) to run non-blocking code under virtual threads, so there're two variations that were impossible to create.
 
-Also, Spring boot allows the user if a project run under virtual threads or not by adding a single property. So, the same code can be used for both executions. 
+Also, Spring boot allows the user if a project run under virtual threads or not by adding a single property. So, the same project can be used for both executions. 
 ```
 spring.threads.virtual.enabled=true
 ```
-In the end, only 10 versions of the same web application were developed.
+In the end, only 10 versions of the same web application were developed. Here´s the list of the versions and the links to each project:
+|                                       | Without Virtual Threads                                           | With Virtual Threads |
+|---------------------------------------|-------------------------------------------------------------------|----------------------|
+| Spring Boot - Blocking - Mysql        | [Go to Project](./blocking/spring_boot/db_relational/)            | |
+| Spring Boot - Non Blocking - Mysql    | [Go to Project](./non_blocking/spring_boot/db_relational/)        | |
+| Spring Boot - Blocking - MongoDB      | [Go to Project](./blocking/spring_boot/db_non_relational/)        | |
+| Spring Boot - Non Blocking - MongoDB  | [Go to Project](./non_blocking/spring_boot/db_non_relational/)    | |
+| Quarkus - Blocking - Mysql            | [Go to Project](./blocking/quarkus/db_relational/without_VT/)     | [Go to Project](./blocking/quarkus/db_relational/with_VT/) |
+| Quarkus - Non Blocking - Mysql        | [Go to Project](./non_blocking/quarkus/db_relational/)            | |
+| Quarkus - Blocking - MongoDB          | [Go to Project](./blocking/quarkus/db_non_relational/without_VT/) | [Go to Project](./blocking/quarkus/db_non_relational/with_VT/) |
+| Quarkus - Non Blocking - MongoDB      | [Go to Project](./non_blocking/quarkus/db_non_relational/)        | |
 
 
 
